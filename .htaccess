@@ -1,0 +1,10 @@
+AddDefaultCharset UTF-8
+<IfModule mod_rewrite.c>
+        RewriteEngine On
+
+        # Hide the application and system directories by redirecting the request to index.php
+        RewriteRule ^(\.git|logs) index.php/$1 [L]
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteCond %{REQUEST_FILENAME} !-d
+        RewriteRule ^([A-Za-z0-9-/]*)$ index.php?query=$1 [L]
+</IfModule>
